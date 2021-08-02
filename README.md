@@ -2,7 +2,7 @@
 
 ## Features
 
-auto fill component and page template code
+After created a folder or file, automatically create the index.j[t]sx/[less,scss,css,sass] file and complete the code snippet.
 
 ## Extension Settings
 
