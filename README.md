@@ -7,10 +7,15 @@ implement some of its features and expand it
 
 After created a folder or file, automatically create the index.j[t]sx/[less,scss,css,sass] file and complete the code snippet.
 
-## Installation
+## Install
 
-1. download the vsix
-2. Can only be installed by selecting **Install from VSIX** from the top right corner of the extension view
+[Install the extension here](https://marketplace.visualstudio.com/items?itemName=cl1107.r5-helper)
+
+Or by opening the Command Palette (Ctrl+Shift+P), and running
+
+```sh
+ext install r5-helper
+```
 
 ## Extension Settings
 
