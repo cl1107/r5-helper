@@ -1,0 +1,26 @@
+{
+  "useRequest Paginated": {
+    "prefix": "userequest-paginated",
+    "body": [
+      "  const { data,loading,tableProps, error, refresh } = useRequest(",
+      "    ({ current, pageSize }) =>",
+      "      $1({",
+      "        countTotal: true,",
+      "        pageNum: current,",
+      "        pageSize,",
+      "      }),",
+      "    {",
+      "      paginated: true,",
+      "      refreshDeps: [],",
+      "    },",
+      "  );",
+      "  if (loading) {",
+      "    return <ContainerLoading />;",
+      "  }",
+      "  if (error) {",
+      "    return <ContainerError error={error} />;",
+      "  }"
+    ],
+    "description": ""
+  }
+}

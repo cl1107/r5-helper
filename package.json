@@ -3,7 +3,7 @@
   "displayName": "r5-helper",
   "publisher": "cl1107",
   "description": "auto fill component template",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.58.0"
   },
@@ -19,10 +19,15 @@
       "type": "object",
       "title": "r5-helper",
       "properties": {
+        "r5-helper.autoFillComponentCode": {
+          "type": "boolean",
+          "default": true,
+          "description": "在 src/ 文件夹下创建 index.j[t]sx 文件后，自动根据文件名补全组件声明代码"
+        },
         "r5-helper.autoCreateStyleFile": {
           "type": "boolean",
           "default": true,
-          "description": "auto create style file for your component or page"
+          "description": "创建 index.j[t]sx 文件后是否创建index.[c,le,sa,sc]ss文件"
         },
         "r5-helper.styleFileType": {
           "type": "string",
@@ -36,7 +41,25 @@
           "description": "type of the style file,less or css or sass or scss"
         }
       }
-    }
+    },
+    "snippets": [
+      {
+        "language": "javascript",
+        "path": "./src/snippets/index.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./src/snippets/index.code-snippets"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./src/snippets/index.code-snippets"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./src/snippets/index.code-snippets"
+      }
+    ]
   },
   "main": "./out/extension.js",
   "scripts": {
@@ -48,16 +71,19 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.58.0",
     "@types/glob": "^7.1.3",
     "@types/mocha": "^8.2.2",
     "@types/node": "14.x",
-    "eslint": "^7.27.0",
+    "@types/vscode": "^1.58.0",
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "@typescript-eslint/parser": "^4.26.0",
+    "eslint": "^7.27.0",
     "glob": "^7.1.7",
     "mocha": "^8.4.0",
     "typescript": "^4.3.2",
     "vscode-test": "^1.5.2"
+  },
+  "dependencies": {
+    "minimatch": "^3.0.4"
   }
 }

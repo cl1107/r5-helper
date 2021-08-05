@@ -8,6 +8,7 @@ import {
   generatorPageTemplate,
   hyphen,
 } from "./utils";
+var minimatch = require("minimatch");
 
 const srcDir = "src";
 
@@ -42,7 +43,15 @@ function checkIsInComponentDir(fsPath: string) {
   return !!vscode.workspace.workspaceFolders?.find((workspaceFolder) => {
     const srcDirPath = path.join(workspaceFolder.uri.fsPath, srcDir);
     const componentsDirPath = path.join(srcDirPath, "components");
-    return fsPath.includes(componentsDirPath);
+    const matchRes =
+      minimatch(fsPath, `${srcDirPath}/**/components/**/index.+(jsx|tsx)`) ||
+      minimatch(fsPath, `${srcDirPath}/**/components/*`);
+    console.log(
+      "🚀 ~ file: autoFillComponent.ts ~ line 50 ~ return!!vscode.workspace.workspaceFolders?.find ~ matchRes",
+      matchRes
+    );
+    return matchRes;
+    // return fsPath.includes(componentsDirPath) || matchRes;
   });
 }
 const indexFilename = "index";
@@ -89,12 +98,18 @@ async function filContent(fsPath: string, type: 1 | 2): Promise<string> {
   const styleFileType = vscode.workspace
     .getConfiguration("r5-helper")
     .get<string>("styleFileType");
-  fs.writeFileSync(
-    newFsPath,
-    type === 1
-      ? generatorComponentTemplate(name, styleFileType ?? "")
-      : generatorPageTemplate(name, styleFileType ?? "")
-  );
+  const isAutoFillComponentCode = vscode.workspace
+    .getConfiguration("r5-helper")
+    .get("autoFillComponentCode");
+  if (isAutoFillComponentCode) {
+    fs.writeFileSync(
+      newFsPath,
+      type === 1
+        ? generatorComponentTemplate(name, styleFileType ?? "")
+        : generatorPageTemplate(name, styleFileType ?? "")
+    );
+  }
+
   const isAutoCreateStyleFile = vscode.workspace
     .getConfiguration("r5-helper")
     .get("autoCreateStyleFile");
