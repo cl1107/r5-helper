@@ -29,27 +29,25 @@ function checkIsInValidatorFolder(fsPath: string) {
 function checkIsInPagesOrLayoutsOrWrapperDir(fsPath: string) {
   return !!vscode.workspace.workspaceFolders?.find((workspaceFolder) => {
     const srcDirPath = path.join(workspaceFolder.uri.fsPath, srcDir);
-    const wrappersDirPath = path.join(srcDirPath, "wrappers");
-    const pagesDirPath = path.join(srcDirPath, "pages");
-    const layoutsDirPath = path.join(srcDirPath, "layouts");
-    return (
-      fsPath.includes(pagesDirPath) ||
-      fsPath.includes(wrappersDirPath) ||
-      fsPath.includes(layoutsDirPath)
-    );
+    // const wrappersDirPath = path.join(srcDirPath, "wrappers");
+    // const pagesDirPath = path.join(srcDirPath, "pages");
+    // const layoutsDirPath = path.join(srcDirPath, "layouts");
+    const matchRes =
+      minimatch(fsPath, `${srcDirPath}/+(pages|layouts|wrappers)/**/*`) ||
+      minimatch(
+        fsPath,
+        `${srcDirPath}/+(pages|layouts|wrappers)/**/index.+(jsx|tsx)`
+      );
+    return matchRes;
   });
 }
 function checkIsInComponentDir(fsPath: string) {
   return !!vscode.workspace.workspaceFolders?.find((workspaceFolder) => {
     const srcDirPath = path.join(workspaceFolder.uri.fsPath, srcDir);
-    const componentsDirPath = path.join(srcDirPath, "components");
+    // const componentsDirPath = path.join(srcDirPath, "components");
     const matchRes =
       minimatch(fsPath, `${srcDirPath}/**/components/**/index.+(jsx|tsx)`) ||
       minimatch(fsPath, `${srcDirPath}/**/components/*`);
-    console.log(
-      "🚀 ~ file: autoFillComponent.ts ~ line 50 ~ return!!vscode.workspace.workspaceFolders?.find ~ matchRes",
-      matchRes
-    );
     return matchRes;
     // return fsPath.includes(componentsDirPath) || matchRes;
   });

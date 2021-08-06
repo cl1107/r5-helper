@@ -42,3 +42,7 @@ Initial release of autoFillComponents
 - add setting r5-helper.autoFillComponentCode
 - fixed bug：when create component but fill page template
 - add code snippets
+
+### 0.0.4
+
+- fixed bug：create nested page fail
