@@ -22,5 +22,61 @@
       "  }"
     ],
     "description": ""
+  },
+  "service api": {
+    "prefix": "eaf-json",
+    "body": [
+      "export const $1Api = async (",
+      "  data: ${2:TypeReq},",
+      ") => {",
+      "  const res = await request<${3:TypeRes}>(",
+      "    '${4:apiPath}',",
+      "    {",
+      "      data,",
+      "      method: 'POST',",
+      "    },",
+      "  );",
+      "  return res.data;",
+      "};"
+    ],
+    "description": ""
+  },
+  "service api response blob": {
+    "prefix": "eaf-blob",
+    "body": [
+      "export const $1Api = async (",
+      "  data: ${2:TypeReq},",
+      ") => {",
+      "  const res = await request<${3:TypeRes}>(",
+      "    '${4:apiPath}',",
+      "    {",
+      "      data,",
+      "      method: 'POST',",
+      "      responseType: 'blob',",
+      "    },",
+      "  );",
+      "  return res.data;",
+      "};"
+    ],
+    "description": ""
+  },
+  "service api using get": {
+    "prefix": "eaf-form-urlencoded",
+    "body": [
+      "export const $1Api = async (",
+      "  data: ${2:TypeReq},",
+      ") => {",
+      "  const res = await request<${3:TypeRes}>(",
+      "    '${4:apiPath}',",
+      "    {",
+      "      headers: {",
+      "        'Content-Type': 'application/x-www-form-urlencoded',",
+      "      },",
+      "    },",
+      "  );",
+      "  return res;",
+      "};"
+    ],
+    "description": ""
   }
 }
