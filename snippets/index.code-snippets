@@ -21,7 +21,7 @@
       "    return <ContainerError error={error} />;",
       "  }"
     ],
-    "description": ""
+    "description": "ahooks useRequest paginated"
   },
   "service api": {
     "prefix": "eaf-json",
