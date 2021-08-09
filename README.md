@@ -26,6 +26,9 @@ ext install r5-helper
 ### Available Snippets
 
 - userequest-paginated
+- eaf-json
+- eaf-blob
+- eaf-form-urlencoded
 
 ## Known Issues
 

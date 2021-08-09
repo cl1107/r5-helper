@@ -23,3 +23,7 @@ Initial release of autoFillComponents
 ### 0.0.4
 
 - fixed bug：create nested page fail
+
+### 0.0.5
+
+- add snippets
