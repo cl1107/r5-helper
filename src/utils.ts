@@ -20,7 +20,8 @@ export function camelCase(str: string) {
 export const generatorComponentTemplate = (
   name: string,
   styleFileType: string = "less"
-) => `import React, { useState, useEffect } from 'react';
+) => `import { useState, useEffect } from 'react';
+import * as React from 'react';
 import './index.${styleFileType}';
 
 export const ${name} = () => {
@@ -29,7 +30,8 @@ export const ${name} = () => {
 export const generatorPageTemplate = (
   name: string,
   styleFileType: string = "less"
-) => `import React, { useState, useEffect } from 'react';
+) => `import { useState, useEffect } from 'react';
+import * as React from 'react';
 import './index.${styleFileType}';
 
 const ${name} = () => {
