@@ -1,8 +1,8 @@
 {
   "useRequest Paginated": {
-    "prefix": "userequest-paginated",
+    "prefix": "useantdtable",
     "body": [
-      "  const { data,loading,tableProps, error, refresh } = useRequest(",
+      "  const { tableProps, error, refresh } = useAntdTable(",
       "    ({ current, pageSize }) =>",
       "      $1({",
       "        countTotal: true,",
@@ -10,18 +10,12 @@
       "        pageSize,",
       "      }),",
       "    {",
-      "      paginated: true,",
       "      refreshDeps: [],",
+      "      defaultParams: [{ current: 1, pageSize: Setting.defaultPageSize }],",
       "    },",
-      "  );",
-      "  if (loading) {",
-      "    return <ContainerLoading />;",
-      "  }",
-      "  if (error) {",
-      "    return <ContainerError error={error} />;",
-      "  }"
+      "  );"
     ],
-    "description": "ahooks useRequest paginated"
+    "description": "ahooks useAntdTable"
   },
   "service api": {
     "prefix": "eaf-json",
