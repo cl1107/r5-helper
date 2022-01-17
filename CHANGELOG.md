@@ -27,3 +27,11 @@ Initial release of autoFillComponents
 ### 0.0.5
 
 - add snippets
+
+### 0.0.6
+
+- update template
+
+### 0.0.7
+
+- update snippets
