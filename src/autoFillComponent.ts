@@ -99,18 +99,32 @@ async function filContent(fsPath: string, type: 1 | 2): Promise<string> {
   const isAutoFillComponentCode = vscode.workspace
     .getConfiguration("r5-helper")
     .get("autoFillComponentCode");
-  if (isAutoFillComponentCode) {
-    fs.writeFileSync(
-      newFsPath,
-      type === 1
-        ? generatorComponentTemplate(name, styleFileType ?? "")
-        : generatorPageTemplate(name, styleFileType ?? "")
-    );
-  }
 
   const isAutoCreateStyleFile = vscode.workspace
     .getConfiguration("r5-helper")
     .get("autoCreateStyleFile");
+  console.log(
+    "🚀 ~ file: autoFillComponent.ts ~ line 106 ~ filContent ~ isAutoCreateStyleFile",
+    isAutoCreateStyleFile
+  );
+
+  if (isAutoFillComponentCode) {
+    fs.writeFileSync(
+      newFsPath,
+      type === 1
+        ? generatorComponentTemplate(
+            name,
+            styleFileType ?? "",
+            isAutoCreateStyleFile as boolean
+          )
+        : generatorPageTemplate(
+            name,
+            styleFileType ?? "",
+            isAutoCreateStyleFile as boolean
+          )
+    );
+  }
+
   if (isAutoCreateStyleFile) {
     const lessTemplate = `.${hyphen(firstLetterToUpperCase(name))}{
 

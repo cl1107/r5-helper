@@ -35,3 +35,7 @@ Initial release of autoFillComponents
 ### 0.0.7
 
 - update snippets
+
+### 0.0.8
+
+- 设置不自动创建样式文件时，生成的模版中也不要 import 样式文件
