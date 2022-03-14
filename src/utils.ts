@@ -23,7 +23,7 @@ export const generatorComponentTemplate = (
   isAutoCreateStyleFile: boolean
 ) => `import { useState, useEffect } from 'react';
 import * as React from 'react';
-${isAutoCreateStyleFile ? `import './index.${styleFileType}` : ""}
+${isAutoCreateStyleFile ? `import './index.${styleFileType}';` : ""}
 
 export const ${name} = () => {
   return <div className="${hyphen(name)}">content</div>;
@@ -34,7 +34,7 @@ export const generatorPageTemplate = (
   isAutoCreateStyleFile: boolean
 ) => `import { useState, useEffect } from 'react';
 import * as React from 'react';
-${isAutoCreateStyleFile ? `import './index.${styleFileType}` : ""}
+${isAutoCreateStyleFile ? `import './index.${styleFileType}';` : ""}
 
 const ${name} = () => {
   return <div className="${hyphen(name)}">content</div>;
