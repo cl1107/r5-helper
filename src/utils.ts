@@ -21,8 +21,7 @@ export const generatorComponentTemplate = (
   name: string,
   styleFileType: string = "less",
   isAutoCreateStyleFile: boolean
-) => `import { useState, useEffect } from 'react';
-import * as React from 'react';
+) => `import { useState } from 'react';
 ${isAutoCreateStyleFile ? `import './index.${styleFileType}';` : ""}
 
 export const ${name} = () => {
@@ -32,8 +31,7 @@ export const generatorPageTemplate = (
   name: string,
   styleFileType: string = "less",
   isAutoCreateStyleFile: boolean
-) => `import { useState, useEffect } from 'react';
-import * as React from 'react';
+) => `import { useState } from 'react';
 ${isAutoCreateStyleFile ? `import './index.${styleFileType}';` : ""}
 
 const ${name} = () => {

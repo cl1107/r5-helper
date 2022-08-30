@@ -43,3 +43,7 @@ Initial release of autoFillComponents
 ### 0.0.9
 
 - 修复生成的模版中 import 样式文件缺少了单引号 Single quotes
+
+### 0.0.10
+
+- 支持 monorepo

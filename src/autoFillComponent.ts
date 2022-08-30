@@ -11,6 +11,8 @@ import {
 var minimatch = require("minimatch");
 
 const srcDir = "src";
+const monoRepoDir = "apps";
+const monoRepoDir2 = "packages";
 
 function checkIsCreatedDir(fsPath: string) {
   return path.extname(fsPath) === "";
@@ -21,33 +23,44 @@ function checkIsValidateType(fileName: string) {
 }
 
 function checkIsInValidatorFolder(fsPath: string) {
-  return !!vscode.workspace.workspaceFolders?.find((workspaceFolder) => {
-    return fsPath.includes(path.join(workspaceFolder.uri.fsPath, srcDir));
+  const res = !!vscode.workspace.workspaceFolders?.find((workspaceFolder) => {
+    return (
+      fsPath.includes(path.join(workspaceFolder.uri.fsPath, srcDir)) ||
+      fsPath.includes(path.join(workspaceFolder.uri.fsPath, monoRepoDir)) ||
+      fsPath.includes(path.join(workspaceFolder.uri.fsPath, monoRepoDir2))
+    );
   });
+  return res;
 }
 
 function checkIsInPagesOrLayoutsOrWrapperDir(fsPath: string) {
   return !!vscode.workspace.workspaceFolders?.find((workspaceFolder) => {
-    const srcDirPath = path.join(workspaceFolder.uri.fsPath, srcDir);
+    // const srcDirPath = path.join(workspaceFolder.uri.fsPath, srcDir);
     // const wrappersDirPath = path.join(srcDirPath, "wrappers");
     // const pagesDirPath = path.join(srcDirPath, "pages");
     // const layoutsDirPath = path.join(srcDirPath, "layouts");
     const matchRes =
-      minimatch(fsPath, `${srcDirPath}/+(pages|layouts|wrappers)/**/*`) ||
       minimatch(
         fsPath,
-        `${srcDirPath}/+(pages|layouts|wrappers)/**/index.+(jsx|tsx)`
+        `${workspaceFolder.uri.fsPath}/**/+(pages|layouts|wrappers)/**/*`
+      ) ||
+      minimatch(
+        fsPath,
+        `${workspaceFolder.uri.fsPath}/**/+(pages|layouts|wrappers)/**/index.+(jsx|tsx)`
       );
     return matchRes;
   });
 }
 function checkIsInComponentDir(fsPath: string) {
   return !!vscode.workspace.workspaceFolders?.find((workspaceFolder) => {
-    const srcDirPath = path.join(workspaceFolder.uri.fsPath, srcDir);
+    // const srcDirPath = path.join(workspaceFolder.uri.fsPath, srcDir);
     // const componentsDirPath = path.join(srcDirPath, "components");
     const matchRes =
-      minimatch(fsPath, `${srcDirPath}/**/components/**/index.+(jsx|tsx)`) ||
-      minimatch(fsPath, `${srcDirPath}/**/components/*`);
+      minimatch(
+        fsPath,
+        `${workspaceFolder.uri.fsPath}/**/components/**/index.+(jsx|tsx)`
+      ) || minimatch(fsPath, `${workspaceFolder.uri.fsPath}/**/components/*`);
+
     return matchRes;
     // return fsPath.includes(componentsDirPath) || matchRes;
   });
@@ -57,11 +70,26 @@ function checkIsIndexNames(name: string): boolean {
   return [indexFilename].includes(name);
 }
 
-function getProjectLanguageType(path: string) {
+// function getProjectLanguageType(path: string) {
+//   try {
+//     fs.accessSync(`${path}/tsconfig.json`);
+//     return "ts";
+//   } catch (error) {
+//     return "js";
+//   }
+// }
+
+function recursiveGetTsConfig(path: string, rootPath: string): string {
   try {
     fs.accessSync(`${path}/tsconfig.json`);
     return "ts";
   } catch (error) {
+    if (path !== rootPath) {
+      return recursiveGetTsConfig(
+        path.slice(0, path.lastIndexOf("/")),
+        rootPath
+      );
+    }
     return "js";
   }
 }
@@ -88,7 +116,8 @@ async function filContent(fsPath: string, type: 1 | 2): Promise<string> {
 
   let newFsPath = fsPath;
   if (isCreatedFolder) {
-    const projectLanguageType = getProjectLanguageType(workspaceRootPath);
+    const projectLanguageType = recursiveGetTsConfig(fsPath, workspaceRootPath);
+    // const projectLanguageType = getProjectLanguageType(workspaceRootPath);
     newFsPath = path.join(fsPath, `${indexFilename}.${projectLanguageType}x`);
   }
 
@@ -144,6 +173,11 @@ export default function () {
     await Promise.all(
       files.map(async (file) => {
         const { fsPath } = file;
+        //拖拽进来新增的有内容的文件就不要去覆盖他的内容了
+        const res = fs.readFileSync(fsPath, { encoding: "utf-8" });
+        if (res) {
+          return;
+        }
         const isInValidateFolder = checkIsInValidatorFolder(fsPath);
         if (isInValidateFolder) {
           const isCreatedFolder = checkIsCreatedDir(fsPath);
@@ -186,15 +220,5 @@ export default function () {
         // await autoFillInStore(file);
       })
     );
-  });
-
-  /**
-   * TODO
-   *
-   * When the file name changes, judge whether the file has been modified.
-   * If not, rename the component with the latest file name.
-   */
-  vscode.workspace.onDidRenameFiles(() => {
-    console.log("onDidRenameFiles");
   });
 }
