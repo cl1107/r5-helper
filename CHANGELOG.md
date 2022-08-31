@@ -47,3 +47,8 @@ Initial release of autoFillComponents
 ### 0.0.10
 
 - 支持 monorepo
+
+### 0.0.11
+
+- 更改 logo
+- 添加 ahooks useRequest 和 React.FC snippets

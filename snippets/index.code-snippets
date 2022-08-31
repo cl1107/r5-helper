@@ -72,5 +72,15 @@
       "};"
     ],
     "description": ""
+  },
+  "React FC Type": {
+    "prefix": "rfc",
+    "body": [":FC<{$1}>"],
+    "description": ""
+  },
+  "ahooks useRequest": {
+    "prefix": "usereq",
+    "body": ["const { data, error, loading } = useRequest(() => $1());"],
+    "description": "ahooks useRequest"
   }
 }

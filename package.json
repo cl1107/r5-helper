@@ -3,7 +3,7 @@
   "displayName": "r5-helper",
   "publisher": "cl1107",
   "description": "auto fill component template",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "license": "MIT",
   "engines": {
     "vscode": "^1.58.0"
