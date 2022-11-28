@@ -52,3 +52,7 @@ Initial release of autoFillComponents
 
 - 更改 logo
 - 添加 ahooks useRequest 和 React.FC snippets
+
+### 0.0.12
+
+- 添加 useAntdTable 和 useRequest Manual snippets

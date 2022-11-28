@@ -1,5 +1,5 @@
 {
-  "useRequest Paginated": {
+  "useAntdTable": {
     "prefix": "useantdtable",
     "body": [
       "  const { tableProps, error, refresh } = useAntdTable(",
@@ -82,5 +82,14 @@
     "prefix": "usereq",
     "body": ["const { data, error, loading } = useRequest(() => $1());"],
     "description": "ahooks useRequest"
+  },
+  "useRequest Manual": {
+    "prefix": "usereqm",
+    "body": [
+      "const { loading, run } = useRequest(() => $1(), {",
+      "  manual: true",
+      "});"
+    ],
+    "description": ""
   }
 }
