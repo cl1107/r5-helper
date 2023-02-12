@@ -91,5 +91,34 @@
       "});"
     ],
     "description": ""
+  },
+  "r5modal": {
+    "prefix": "r5modal",
+    "body": [
+      "import { R5Modal } from 'r5-ui';",
+      "import type { FC } from 'react';",
+      "",
+      "export const $1: FC<{",
+      "  open: boolean;",
+      "  onCancel: () => void;",
+      "  onOk: () => void;",
+      "}> = ({ open, onOk, onCancel }) => {",
+      "  return (",
+      "    <div className=\"preview-change-user\">",
+      "      <R5Modal",
+      "        title=\"$2\"",
+      "        open={open}",
+      "        width={800}",
+      "        onOk={onOk}",
+      "        onCancel={onCancel}",
+      "      >",
+      "       $3",
+      "      </R5Modal>",
+      "    </div>",
+      "  );",
+      "};",
+      ""
+    ],
+    "description": "r5modal的基本模板"
   }
 }
