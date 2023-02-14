@@ -120,5 +120,15 @@
       ""
     ],
     "description": "r5modal的基本模板"
+  },
+  "import less from ./": {
+    "prefix": "imi",
+    "body": ["import './index.less'"],
+    "description": "导入样式"
+  },
+  "import style from ./index.less": {
+    "prefix": "ims",
+    "body": ["import styles from './index.less'"],
+    "description": "cssModules导入样式"
   }
 }
