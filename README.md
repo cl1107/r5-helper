@@ -31,6 +31,8 @@ ext install r5-helper
 - eaf-json
 - eaf-blob
 - eaf-form-urlencoded
+- imi import less from ./index.less
+- ims import style from ./index.less
 
 ## Known Issues
 
