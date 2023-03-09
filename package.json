@@ -3,7 +3,7 @@
   "displayName": "r5-helper",
   "publisher": "cl1107",
   "description": "auto fill component template",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "engines": {
     "vscode": "^1.58.0"
@@ -83,7 +83,7 @@
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "14.x",
-    "@types/vscode": "^1.76.0",
+    "@types/vscode": "^1.58.0",
     "@typescript-eslint/eslint-plugin": "^5.54.1",
     "@typescript-eslint/parser": "^5.54.1",
     "eslint": "^8.35.0",
