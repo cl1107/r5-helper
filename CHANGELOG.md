@@ -56,3 +56,7 @@ Initial release of autoFillComponents
 ### 0.0.12
 
 - 添加 useAntdTable 和 useRequest Manual snippets
+
+### 0.1.0
+
+- 修复 minimatch 匹配错误，更新依赖
