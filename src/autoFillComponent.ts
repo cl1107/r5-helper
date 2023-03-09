@@ -132,6 +132,9 @@ async function filContent(fsPath: string, type: 1 | 2): Promise<string> {
   const isAutoCreateStyleFile = vscode.workspace
     .getConfiguration("r5-helper")
     .get("autoCreateStyleFile");
+  const cssModules = vscode.workspace
+    .getConfiguration("r5-helper")
+    .get<boolean>("cssModules");
   console.log(
     "🚀 ~ file: autoFillComponent.ts ~ line 106 ~ filContent ~ isAutoCreateStyleFile",
     isAutoCreateStyleFile
@@ -144,12 +147,14 @@ async function filContent(fsPath: string, type: 1 | 2): Promise<string> {
         ? generatorComponentTemplate(
             name,
             styleFileType ?? "",
-            isAutoCreateStyleFile as boolean
+            isAutoCreateStyleFile as boolean,
+            !!cssModules
           )
         : generatorPageTemplate(
             name,
             styleFileType ?? "",
-            isAutoCreateStyleFile as boolean
+            isAutoCreateStyleFile as boolean,
+            !!cssModules
           )
     );
   }

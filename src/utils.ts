@@ -20,22 +20,41 @@ export function camelCase(str: string) {
 export const generatorComponentTemplate = (
   name: string,
   styleFileType: string = "less",
-  isAutoCreateStyleFile: boolean
+  isAutoCreateStyleFile: boolean,
+  cssModules: boolean
 ) => `import { useState } from 'react';
-${isAutoCreateStyleFile ? `import './index.${styleFileType}';` : ""}
+${
+  isAutoCreateStyleFile
+    ? cssModules
+      ? `import styles from './index.${styleFileType}';`
+      : `import './index.${styleFileType}';`
+    : ""
+}
 
 export const ${name} = () => {
-  return <div className="${hyphen(name)}">content</div>;
+  return <div className=${
+    cssModules ? `{styles[${hyphen(name)}]}` : `"${hyphen(name)}"`
+  }>content</div>;
 };`;
+
 export const generatorPageTemplate = (
   name: string,
   styleFileType: string = "less",
-  isAutoCreateStyleFile: boolean
+  isAutoCreateStyleFile: boolean,
+  cssModules: boolean
 ) => `import { useState } from 'react';
-${isAutoCreateStyleFile ? `import './index.${styleFileType}';` : ""}
+${
+  isAutoCreateStyleFile
+    ? cssModules
+      ? `import styles from './index.${styleFileType}';`
+      : `import './index.${styleFileType}';`
+    : ""
+}
 
 const ${name} = () => {
-  return <div className="${hyphen(name)}">content</div>;
+  return <div className=${
+    cssModules ? `{styles[${hyphen(name)}]}` : `"${hyphen(name)}"`
+  }>content</div>;
 };
 export default ${name}
 `;
