@@ -3,7 +3,7 @@
   "displayName": "r5-helper",
   "publisher": "cl1107",
   "description": "auto fill component template",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "engines": {
     "vscode": "^1.58.0"
@@ -76,18 +76,15 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "yarn run compile && yarn run lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
+    "lint": "eslint src --ext ts"
   },
   "devDependencies": {
-    "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "14.x",
     "@types/vscode": "^1.58.0",
     "@typescript-eslint/eslint-plugin": "^5.54.1",
     "@typescript-eslint/parser": "^5.54.1",
     "eslint": "^8.35.0",
-    "glob": "^8.1.0",
     "mocha": "^8.4.0",
     "typescript": "^4.9.5",
     "vscode-test": "^1.6.1"
