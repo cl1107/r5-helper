@@ -33,6 +33,11 @@
           "default": true,
           "description": "创建 index.j[t]sx 文件后是否创建index.[c,le,sa,sc]ss文件"
         },
+        "r5-helper.cssModules": {
+          "type": "boolean",
+          "default": false,
+          "description": "是否以cssModules的方式引入样式文件"
+        },
         "r5-helper.styleFileType": {
           "type": "string",
           "enum": [
@@ -75,19 +80,19 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/glob": "^7.1.3",
-    "@types/mocha": "^8.2.2",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
     "@types/node": "14.x",
-    "@types/vscode": "^1.58.0",
-    "@typescript-eslint/eslint-plugin": "^4.26.0",
-    "@typescript-eslint/parser": "^4.26.0",
-    "eslint": "^7.27.0",
-    "glob": "^7.1.7",
+    "@types/vscode": "^1.76.0",
+    "@typescript-eslint/eslint-plugin": "^5.54.1",
+    "@typescript-eslint/parser": "^5.54.1",
+    "eslint": "^8.35.0",
+    "glob": "^8.1.0",
     "mocha": "^8.4.0",
-    "typescript": "^4.3.2",
-    "vscode-test": "^1.5.2"
+    "typescript": "^4.9.5",
+    "vscode-test": "^1.6.1"
   },
   "dependencies": {
-    "minimatch": "^3.0.4"
+    "minimatch": "^7.4.2"
   }
 }
