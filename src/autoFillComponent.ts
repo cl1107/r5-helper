@@ -42,11 +42,17 @@ function checkIsInPagesOrLayoutsOrWrapperDir(fsPath: string) {
     const matchRes =
       minimatch(
         fsPath,
-        `${workspaceFolder.uri.fsPath}/**/+(pages|layouts|wrappers)/**/*`
+        `${workspaceFolder.uri.fsPath.replace(
+          /\\/g,
+          "/"
+        )}/**/{pages,layouts,wrappers}/**/*`
       ) ||
       minimatch(
         fsPath,
-        `${workspaceFolder.uri.fsPath}/**/+(pages|layouts|wrappers)/**/index.+(jsx|tsx)`
+        `${workspaceFolder.uri.fsPath.replace(
+          /\\/g,
+          "/"
+        )}/**/{pages,layouts,wrappers}/**/index.{jsx,tsx}`
       );
     return matchRes;
   });
@@ -58,8 +64,15 @@ function checkIsInComponentDir(fsPath: string) {
     const matchRes =
       minimatch(
         fsPath,
-        `${workspaceFolder.uri.fsPath}/**/components/**/index.+(jsx|tsx)`
-      ) || minimatch(fsPath, `${workspaceFolder.uri.fsPath}/**/components/*`);
+        `${workspaceFolder.uri.fsPath.replace(
+          /\\/g,
+          "/"
+        )}/**/components/**/index.{jsx,tsx}`
+      ) ||
+      minimatch(
+        fsPath,
+        `${workspaceFolder.uri.fsPath.replace(/\\/g, "/")}/**/components/*`
+      );
 
     return matchRes;
     // return fsPath.includes(componentsDirPath) || matchRes;
@@ -186,9 +199,11 @@ export default function () {
         const isInValidateFolder = checkIsInValidatorFolder(fsPath);
         if (isInValidateFolder) {
           const isCreatedFolder = checkIsCreatedDir(fsPath);
-          const isInComponentDir = checkIsInComponentDir(fsPath);
+          const isInComponentDir = checkIsInComponentDir(
+            fsPath.replace(/\\/g, "/")
+          );
           const isInPagesOrLayoutsOrWrapperDir =
-            checkIsInPagesOrLayoutsOrWrapperDir(fsPath);
+            checkIsInPagesOrLayoutsOrWrapperDir(fsPath.replace(/\\/g, "/"));
           if (isCreatedFolder) {
             const createdDirname = path.basename(fsPath);
             const isCreatedBlackListDir = [
