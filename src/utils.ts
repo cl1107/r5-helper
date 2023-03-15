@@ -33,7 +33,7 @@ ${
 
 export const ${name} = () => {
   return <div className=${
-    cssModules ? `{styles.${hyphen(name)}}` : `"${hyphen(name)}"`
+    cssModules ? `{styles.${name}}` : `"${hyphen(name)}"`
   }>content</div>;
 };`;
 
@@ -53,7 +53,7 @@ ${
 
 const ${name} = () => {
   return <div className=${
-    cssModules ? `{styles.${hyphen(name)}}` : `"${hyphen(name)}"`
+    cssModules ? `{styles.${name}}` : `"${hyphen(name)}"`
   }>content</div>;
 };
 export default ${name}
