@@ -1,5 +1,5 @@
-import * as path from "path";
 import * as fs from "fs";
+import * as path from "path";
 import * as vscode from "vscode";
 import {
   camelCase,
@@ -173,7 +173,12 @@ async function filContent(fsPath: string, type: 1 | 2): Promise<string> {
   }
 
   if (isAutoCreateStyleFile) {
-    const lessTemplate = `.${hyphen(firstLetterToUpperCase(name))}{
+    const lessTemplate = !!cssModules
+      ? `.${firstLetterToUpperCase(name)}{
+
+    }
+    `
+      : `.${hyphen(firstLetterToUpperCase(name))}{
 
 }
 `;
